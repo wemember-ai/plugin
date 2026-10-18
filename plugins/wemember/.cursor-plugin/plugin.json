@@ -1,6 +1,6 @@
 {
   "name": "wemember",
-  "version": "0.3.4",
+  "version": "0.3.6",
   "description": "Company memory for Cursor. Connects Cursor to your Wemember workspace over MCP (OAuth) and adds skills to catch up on, remember, correct and share what your company knows. Wemember is the memory layer under the AI tools you already use (Claude, ChatGPT, Cursor, Grok), not another agent workplace. Requires a Wemember account.",
   "author": {
     "name": "Wemember"

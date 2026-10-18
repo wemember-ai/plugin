@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Wemember: company memory under the AI tools you already use.",
-    "version": "0.3.4",
+    "version": "0.3.6",
     "pluginRoot": "plugins"
   },
   "plugins": [

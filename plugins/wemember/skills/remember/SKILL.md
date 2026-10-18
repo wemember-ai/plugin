@@ -6,6 +6,8 @@ description: Save a decision, preference or agreement the user stated to Wemembe
 # Remember in Wemember
 
 1. Take the user's own statement, in their exact words. Wemember stores it as a quote, so do not summarize or rephrase it. Leave out the conversation around it. At most three statements.
+   - When the user decided by picking an option in a multiple-choice question, that choice is their statement: save the question and the chosen label, as shown.
+   - What you found or concluded yourself is not a statement of the user: use the `project-document` skill for that.
 2. The user decides what goes into Wemember. Their explicit request authorizes saving that statement: preserve it even when it contains personal data, credentials or other sensitive information, without another confirmation.
 3. Save each statement with the Wemember tool `memory.remember`: the exact quote as `text`, a short `title`, and the `kind` (decision, preference, fact or correction).
 4. Leave `scope` out, so only the user sees it, unless the user asks to share it with a team or the whole organization. When the statement is work knowledge for one of the user's own teams (a rule, a way of working, a decision about shared work), you may ask once, in one short sentence, whether to save it for that team, for example: "Zal ik dit voor Sales Management opslaan?" Their yes is the request: use `scope` "team" with that team's id from `workspace.brief`. Naming a project, a team or "we decided" is not by itself such a request. A shared statement is visible to that audience at once, before review. The whole organization is never your own choice.

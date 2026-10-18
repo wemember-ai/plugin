@@ -1,8 +1,8 @@
 {
   "name": "wemember-staging",
   "displayName": "Wemember staging (testing)",
-  "version": "0.3.4",
-  "description": "Staging environment for testing. Your company's memory in Claude Code: relevant Wemember context at the first prompt of a session, and optional proposals to remember what a session settled.",
+  "version": "0.3.6",
+  "description": "Staging environment for testing. Your company's memory in Claude Code: relevant Wemember context at the first prompt of a session, and optional proposals: your statements as memories, the agent's own findings in a living project document.",
   "author": {
     "name": "Wemember",
     "url": "https://github.com/wemember-ai/plugin"
@@ -19,8 +19,8 @@
   "userConfig": {
     "propose_memories": {
       "type": "boolean",
-      "title": "Propose memories at the end of longer sessions",
-      "description": "Off by default. When on, after a session with at least 15 tool calls Claude is asked once to propose up to three decisions, preferences or agreements you stated to Wemember, as personal proposals for review.",
+      "title": "Propose memories and update the project document during longer sessions",
+      "description": "Off by default. When on, after every 15 tool calls Claude is asked to propose up to three decisions, preferences or agreements you stated (or picked in a multiple-choice question) to Wemember, and to put its own findings in the project's living document, both personal unless you said yes to your team.",
       "default": false
     }
   }

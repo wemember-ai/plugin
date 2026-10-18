@@ -10,8 +10,8 @@ Wemember is your company's memory: your AI tools keep it current, within your ru
 | --- | --- | --- |
 | Wemember MCP server | always | Connects `https://app.staging.wemember.ai/mcp` with your own sign-in (OAuth). The agent gets the same Wemember tools as with a manual MCP connection. |
 | Context at the first prompt | the first prompt of a session, and the first prompt after the conversation is compacted | Calls the Wemember tool `context.prompt` with your prompt. If Wemember finds relevant sources or memory you may see, a short text with source and version is added to the model's context. If nothing is relevant, nothing is added. |
-| Skills | when they fit what you ask | Eight short guides for the agent, used only when they fit: `wemember` (what Wemember can do), `catch-up` (what the company knows; continue earlier work), `remember`, `correct`, `import-docs`, `share` (a page or shared source for a colleague) `company-skills` (the company's skill library) and `setup` (the Wemember section in this tool). In Claude Code they are `/wemember-staging:<name>`; in Codex `$wemember-staging:<name>`. |
-| Memory proposals | **off by default** | When you turn it on: after a session with at least 15 tool calls, the agent is asked once to propose up to three decisions, preferences or agreements you stated, as proposals for review. |
+| Skills | when they fit what you ask | Nine short guides for the agent, used only when they fit: `wemember` (what Wemember can do), `catch-up` (what the company knows; continue earlier work), `remember` (what you said or chose), `project-document` (the agent's own findings in one living document per project), `correct`, `import-docs`, `share` (a page or shared source for a colleague), `company-skills` (the company's skill library) and `setup` (the Wemember section in this tool). In Claude Code they are `/wemember-staging:<name>`; in Codex `$wemember-staging:<name>`. |
+| Memory proposals | **off by default** | When you turn it on: after every 15 tool calls, the agent is asked to propose up to three decisions, preferences or agreements you stated or picked in a multiple-choice question, and to put its own findings (what was built, verified or assumed, open questions) in the project's living document. Both stay personal unless you said yes to your team. |
 
 ## What it sends and stores
 
@@ -21,7 +21,7 @@ Wemember is your company's memory: your AI tools keep it current, within your ru
   - Wemember uses at most the first 2,000 characters of a prompt as its search query. Prompts shorter than three words, and slash commands, are not searched.
   - Wemember stores neither the prompt nor the session id. It keeps a hash of the session for two days, and records which source and memory versions it delivered (`audit.delivery`), as for any search.
 - **Never**: the transcript of your session, files from your machine, or anything to a third party. The plugin reads no credential from your environment.
-- **On your machine**, only when memory proposals are on: a tool-call counter and a marker per session in the plugin's data directory, deleted after two days.
+- **On your machine**, only when memory proposals are on: a tool-call counter per session in the plugin's data directory, deleted after two days.
 
 Searching itself works as in `context.query`: you only ever get sources and memory that you may see in the active workspace.
 
@@ -56,7 +56,7 @@ If you already connected Wemember by hand (`claude mcp add` or `codex mcp add`),
 | --- | --- | --- |
 | The whole plugin | `/plugin`, disable Wemember staging; per project with `enabledPlugins` in `.claude/settings.json` | `/plugins`, disable Wemember staging |
 | Only the hooks | — | `/hooks`, disable the Wemember staging hooks |
-| Memory proposals | `/config`, plugin option "Propose memories at the end of longer sessions" | start Codex with `WEMEMBER_STAGING_PROPOSE_MEMORIES=1` in the environment |
+| Memory proposals | `/config`, plugin option "Propose memories and update the project document during longer sessions" | start Codex with `WEMEMBER_STAGING_PROPOSE_MEMORIES=1` in the environment |
 | Proposals after more or fewer tool calls | `WEMEMBER_STAGING_PROPOSE_AFTER_TOOL_CALLS=<number>` in the environment | the same |
 
 Telling the agent "don't use Wemember" stops its own Wemember calls, but not the plugin's hooks. Disable the plugin for that.
@@ -95,6 +95,10 @@ To update by hand instead: `/plugin` → **Installed** → Wemember staging → 
 Each person still signs in to Wemember once via `/mcp`; the plugin never shares a sign-in.
 
 **Codex and ChatGPT, for your workspace.** In ChatGPT, open **Admin → Plugins → Marketplaces** and import the GitHub repository `wemember-ai/plugin`. The workspace then syncs it daily; **Sync now** fetches a new version at once, and an invalid update keeps the last working version. Set per plugin whether Wemember is available or installed by default.
+
+## Connection status
+
+Run `/mcp` in Claude Code. It lists each MCP server with its status: connected, failed, or needs authentication. To sign in, or to sign in again after a sign-in expired, select the Wemember staging server and choose **Authenticate**; a browser window opens for the Wemember sign-in. The `setup` skill checks this first: if Wemember is not connected, it says so and writes nothing.
 
 ## If something goes wrong
 

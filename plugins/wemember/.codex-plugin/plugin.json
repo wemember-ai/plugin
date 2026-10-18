@@ -1,7 +1,7 @@
 {
   "name": "wemember",
-  "version": "0.3.4",
-  "description": "Your company's memory in Codex: relevant Wemember context at the first prompt of a session, and optional proposals to remember what a session settled.",
+  "version": "0.3.6",
+  "description": "Your company's memory in Codex: relevant Wemember context at the first prompt of a session, and optional proposals: your statements as memories, the agent's own findings in a living project document.",
   "author": {
     "name": "Wemember",
     "url": "https://github.com/wemember-ai/plugin"
