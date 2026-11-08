@@ -1,6 +1,6 @@
 {
   "name": "wemember",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Your company's memory in Codex: relevant Wemember context at the first prompt of a session, and optional proposals: your statements as memories, the agent's own findings in a living project document.",
   "author": {
     "name": "Wemember",
