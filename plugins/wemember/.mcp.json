@@ -2,7 +2,7 @@
   "mcpServers": {
     "wemember": {
       "type": "http",
-      "url": "https://app.wemember.ai/mcp"
+      "url": "https://app.wemember.ai/mcp?tools=sources.provenance,sources.append,memory.feedback,workspace.agreements.propose,skills.read,skills.use,procedures.propose"
     }
   }
 }

@@ -2,7 +2,7 @@
   "mcpServers": {
     "wemember-staging": {
       "type": "http",
-      "url": "https://app.staging.wemember.ai/mcp"
+      "url": "https://app.staging.wemember.ai/mcp?tools=sources.provenance,sources.append,memory.feedback,workspace.agreements.propose,skills.read,skills.use,procedures.propose"
     }
   }
 }
